@@ -1,0 +1,359 @@
+fileFormatVersion: 2
+guid: 3267b414ea5d37a45ac1ffeb03a61c53
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Shield
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1393
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b36ee2518bdbb8409aa91ed356f7d50
+      internalID: 828025139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield wood
+      rect:
+        serializedVersion: 2
+        x: 4060
+        y: 1389
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d35a5818e712d48a58a6415ad3936b
+      internalID: 1581011970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rube
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 1401
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a7da4ab5c79fb4ca38eeaca47d4910
+      internalID: 1037976052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bomb
+      rect:
+        serializedVersion: 2
+        x: 2726
+        y: 1384
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd8c1ac9583c8544872deb2deb75d02
+      internalID: 29217371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poison
+      rect:
+        serializedVersion: 2
+        x: 2559
+        y: 155
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4003b747e7d23c74eb2eca8fd3339e7b
+      internalID: 2094212209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 102
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc1feb2e59b0a24f9f3d3d2626af017
+      internalID: 734810820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Energy
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 112
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8887b385bd592f6409faebe81f153980
+      internalID: -117371990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold
+      rect:
+        serializedVersion: 2
+        x: 3926
+        y: 52
+        width: 1170
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33392feb912ba2641afda03b0cd105b5
+      internalID: 363627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Bomb: 29217371
+      Energy: -117371990
+      Gold: 363627
+      Key: 734810820
+      Poison: 2094212209
+      Rube: 1037976052
+      Shield: 828025139
+      Shield wood: 1581011970
+      Slot Items_0: -1278530300
+      Slot Items_1: 794762203
+      Slot Items_10: -1239708255
+      Slot Items_11: -446084516
+      Slot Items_13: -1360865493
+      Slot Items_16: -1816604812
+      Slot Items_17: -1916958322
+      Slot Items_18: -991202112
+      Slot Items_19: 2062195578
+      Slot Items_2: 1356750457
+      Slot Items_20: 264699359
+      Slot Items_21: 551642973
+      Slot Items_22: -181445383
+      Slot Items_23: -1053758703
+      Slot Items_24: -1118371304
+      Slot Items_25: -369596435
+      Slot Items_26: 1012000306
+      Slot Items_27: 637432231
+      Slot Items_28: -893060554
+      Slot Items_29: 1357446851
+      Slot Items_3: 273907292
+      Slot Items_30: 810409613
+      Slot Items_31: -1591542483
+      Slot Items_32: -2133430646
+      Slot Items_34: 173752184
+      Slot Items_36: 1091471348
+      Slot Items_39: -940469578
+      Slot Items_4: -1090709184
+      Slot Items_40: -1925715499
+      Slot Items_41: 1904571304
+      Slot Items_42: -2128307874
+      Slot Items_43: 689161042
+      Slot Items_44: 967392087
+      Slot Items_45: -331482357
+      Slot Items_46: 1471715630
+      Slot Items_47: 954035339
+      Slot Items_48: 1049562781
+      Slot Items_49: 661732941
+      Slot Items_5: -1604800189
+      Slot Items_50: -1524203181
+      Slot Items_6: -1809767381
+      Slot Items_7: 1735993890
+      Slot Items_9: 2104215753
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

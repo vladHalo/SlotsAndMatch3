@@ -3,12 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Missile
+  - ship
+  - asteroid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Block
   - Water
   - UI
   - 
@@ -40,4 +43,34 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Layer0
+    uniqueID: 3670011969
+    locked: 0
+  - name: Layer1
+    uniqueID: 193884661
+    locked: 0
+  - name: Layer2
+    uniqueID: 2029597007
+    locked: 0
+  - name: Layer3
+    uniqueID: 1569269755
+    locked: 0
+  - name: Layer4
+    uniqueID: 1180022003
+    locked: 0
+  - name: Layer5
+    uniqueID: 1305024139
+    locked: 0
+  - name: Layer6
+    uniqueID: 592000137
+    locked: 0
+  - name: Layer7
+    uniqueID: 688201169
+    locked: 0
+  - name: Layer8
+    uniqueID: 531446231
+    locked: 0
+  - name: Block
+    uniqueID: 389180507
     locked: 0
