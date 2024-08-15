@@ -2,23 +2,28 @@ using UnityEngine;
 
 public class Leadboard : MonoBehaviour
 {
-    public void ShowLeaderboard()
+    private void Start()
     {
-        // if (!KTGameCenter.SharedCenter().IsGameCenterAuthenticated())
-        // {
-        //     KTGameCenter.SharedCenter().Authenticate();
-        // }
-        //
-        // KTGameCenter.SharedCenter().ShowLeaderboard("com.best.scores.leaderboard");
+        KTGameCenter.SharedCenter().Authenticate();
     }
 
-    public void SubmitScoreFloat(float score)
+    public void ShowLeaderboard()
     {
-        // if (!KTGameCenter.SharedCenter().IsGameCenterAuthenticated())
-        // {
-        //     KTGameCenter.SharedCenter().Authenticate();
-        // }
-        //
-        // KTGameCenter.SharedCenter().SubmitFloatScore(score, 2, "com.best.scores.leaderboard");
+        if (!KTGameCenter.SharedCenter().IsGameCenterAuthenticated())
+        {
+            KTGameCenter.SharedCenter().Authenticate();
+        }
+        
+        KTGameCenter.SharedCenter().ShowLeaderboard("com.best.scores.leaderboard");
+    }
+
+    public void SubmitScore(int score)
+    {
+        if (!KTGameCenter.SharedCenter().IsGameCenterAuthenticated())
+        {
+            KTGameCenter.SharedCenter().Authenticate();
+        }
+        
+        KTGameCenter.SharedCenter().SubmitScore(score, "com.best.scores.leaderboard");
     }
 }

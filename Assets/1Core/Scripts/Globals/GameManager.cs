@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject btnStart;
     public Button btnShop;
 
+    public Leadboard leadboard;
     public LoadBar loadBar;
     public MoneyManager moneyManager;
     public BlockManager blockManager;

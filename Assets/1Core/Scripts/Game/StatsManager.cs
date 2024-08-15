@@ -54,6 +54,7 @@ namespace _1Core.Scripts.Game
             if (_isMaxIndex && currentIndex > _maxIndex) currentIndex = _maxIndex;
             if (_textStat != null) _textStat.text = currentIndex.ToString();
             if (_type == StatsType.Level) _textStat.text = "LEVEL: " + (currentIndex + 1);
+            if (_type == StatsType.Stars) GameManager.instance.leadboard.SubmitScore(currentIndex);
             ES3.Save(_type + _suffix, currentIndex);
         }
 
