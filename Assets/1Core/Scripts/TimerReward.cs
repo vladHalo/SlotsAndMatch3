@@ -16,9 +16,9 @@ namespace _1Core.Scripts
         private void Start()
         {
             _waitForSeconds = new WaitForSeconds(1);
-            if (ES3.KeyExists(Str.ExitTime))
+            if (ES3.KeyExists(Str.ExitTimeReward))
             {
-                long exitTimeTicks = ES3.Load<long>(Str.ExitTime);
+                long exitTimeTicks = ES3.Load<long>(Str.ExitTimeReward);
                 _exitTime = new DateTime(exitTimeTicks, DateTimeKind.Utc);
                 timeReward = ES3.Load<float>(Str.RewardTime);
 
@@ -79,7 +79,7 @@ namespace _1Core.Scripts
             // При виході з програми або включенні режиму паузи зберігаємо дані
             if (pauseStatus)
             {
-                ES3.Save(Str.ExitTime, DateTime.UtcNow.Ticks);
+                ES3.Save(Str.ExitTimeReward, DateTime.UtcNow.Ticks);
                 ES3.Save(Str.RewardTime, timeReward);
             }
         }

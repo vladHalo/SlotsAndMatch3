@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 public class BlockManager : MonoBehaviour
 {
     [SerializeField] private BlockItemFactory _blockItemFactory;
-    [SerializeField] private Sprite[] _crashSprite;
+    [SerializeField] private List<Sprite> _crashSprite;
+    [SerializeField] private List<SpriteBlockModel> _spriteBlockModels;
     [SerializeField] private List<BlockModel> _blockModels;
 
     private GameManager _gameManager;
@@ -19,13 +20,22 @@ public class BlockManager : MonoBehaviour
         _gameManager = GameManager.instance;
     }
 
-    private void Add(SpriteRenderer spriteRenderer)
+    public void SetDesign(int index)
+    {
+        _crashSprite.Clear();
+        _crashSprite = _spriteBlockModels[index].sprites;
+    }
+    
+    private void Add(SpriteRenderer spriteRenderer, Slot slot)
     {
         var block = new BlockModel
         {
             indexCrash = 0,
-            blockSprite = spriteRenderer
+            blockSprite = spriteRenderer,
+            target = slot
         };
+        slot.boxCollider.enabled = false;
+        block.blockSprite.sprite = _crashSprite[0];
         _blockModels.Add(block);
     }
 
@@ -33,7 +43,7 @@ public class BlockManager : MonoBehaviour
     public void SetTasksCount(List<TypeItem> typeItems)
     {
         var slotsType = new List<Slot>();
-        _gameManager.slotsManager.slots.ForEach(x =>
+        _gameManager.slotsManager.enableSlots.ForEach(x =>
         {
             if (typeItems.Contains(x.typeItem))
             {
@@ -45,7 +55,7 @@ public class BlockManager : MonoBehaviour
 
         for (int i = 0; i < countBlockCreate; i++)
         {
-            var slot = _gameManager.slotsManager.slots.Random();
+            var slot = _gameManager.slotsManager.enableSlots.Random();
             if (!slotsType.Contains(slot)) slotsType.Add(slot);
         }
 
@@ -53,7 +63,7 @@ public class BlockManager : MonoBehaviour
         {
             var target = slotsType.Random();
             slotsType.Remove(target);
-            Add(_blockItemFactory.Create(target.box));
+            Add(_blockItemFactory.Create(target.box), target);
         }
     }
 
@@ -65,8 +75,9 @@ public class BlockManager : MonoBehaviour
             if (_blockModels[i].blockSprite.gameObject == blockSlot)
             {
                 _blockModels[i].indexCrash++;
-                if (_blockModels[i].indexCrash >= _crashSprite.Length)
+                if (_blockModels[i].indexCrash >= _crashSprite.Count)
                 {
+                    _blockModels[i].target.boxCollider.enabled = true;
                     LeanPool.Despawn(_blockModels[i].blockSprite.gameObject);
                     _blockModels.RemoveAt(i);
                     return;
@@ -90,4 +101,11 @@ public class BlockModel
 {
     public int indexCrash;
     public SpriteRenderer blockSprite;
+    public Slot target;
+}
+
+[Serializable]
+public class SpriteBlockModel
+{
+    public List<Sprite> sprites;
 }

@@ -25,15 +25,7 @@ namespace Core.Scripts.Store
                 if (ES3.KeyExists($"{Str.Price}{i}"))
                     _indexStep[i] = ES3.Load<int>($"{Str.Price}{i}");
                 ActionButtonUpgradeManager.ChangePriceText(i, _prices[i] * _indexStep[i]);
-
-                if (i == 0)
-                {
-                    //gameManager.firstPlace = .2f * (_indexStep[i] - 1);
-                }
-                else if (i == 1)
-                {
-                    //gameManager.multiplierX = .05f * (_indexStep[i] - 1);
-                }
+                gameManager.bonuses[i].index = _indexStep[i];
             }
         }
 
@@ -46,14 +38,7 @@ namespace Core.Scripts.Store
                 ES3.Save($"{Str.Price}{index}", _indexStep[index]);
                 ActionButtonUpgradeManager.NextStep(index);
                 ActionButtonUpgradeManager.ChangePriceText(index, _prices[index]);
-                if (index == 0)
-                {
-                    //gameManager.firstPlace = .2f * (_indexStep[index] - 1);
-                }
-                else if (index == 1)
-                {
-                    //gameManager.multiplierX = .05f * (_indexStep[index] - 1);
-                }
+                gameManager.bonuses[index].index = _indexStep[index];
             }
             else
             {

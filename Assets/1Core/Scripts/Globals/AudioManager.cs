@@ -45,8 +45,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayWin() => PlaySoundEffect(SoundType.Win);
-
     public void PlaySoundEffect(SoundType soundType)
     {
         _soundEffects[(int)soundType].Play();
@@ -75,10 +73,10 @@ public class AudioManager : MonoBehaviour
 
 public enum SoundType
 {
-    Bomb1,
-    Bomb2,
-    Bomb3,
     Win,
     Lose,
-    Point
+    Point,
+    Bonus,
+    Crash,
+    Slot
 }

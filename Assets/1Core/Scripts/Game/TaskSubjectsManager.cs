@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using _1Core.Scripts.Game;
 using Core.Scripts.Tools.Extensions;
+using Core.Scripts.Views;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TaskSubjectsManager : MonoBehaviour
 {
+    [SerializeField] private LoadBar _loadBar;
     [SerializeField] private TaskModel[] _taskModels;
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private List<TypeItem> _typeItems;
@@ -17,27 +23,47 @@ public class TaskSubjectsManager : MonoBehaviour
     [Space] [SerializeField] private List<TypeItemModel> _levelTypeItems;
 
     private GameManager _gameManager;
+    private int _totalTaskCount, _currentTaskTotal;
+
+    public UnityEvent onWinEvent;
 
     private void Start()
     {
         _gameManager = GameManager.instance;
     }
 
+    public void OffTaskImage() => _taskModels.ForEach(x => x.taskImage.gameObject.SetActive(false));
+
     public void MinusTask(TypeItem typeItem)
     {
-        _taskModels.ForEach(x =>
+        var item = _taskModels.FirstOrDefault(x => x.taskTypeItem == typeItem);
+        item.taskIndex--;
+        _currentTaskTotal--;
+        item.taskText.text = $"{item.taskIndex}";
+        if (item.taskIndex <= 0) CheckWin();
+        _loadBar.SetProgress((float)(_totalTaskCount - _currentTaskTotal) / _totalTaskCount);
+    }
+
+    private void CheckWin()
+    {
+        for (int i = 0; i < _taskModels.Length; i++)
         {
-            if (x.taskTypeItem == typeItem)
+            if (_taskModels[i].taskImage.gameObject.activeSelf && _taskModels[i].taskIndex > 0)
             {
-                x.taskIndex--;
-                x.taskText.text = $"{x.taskIndex}";
+                return;
             }
-        });
+        }
+
+        AudioManager.instance.PlaySoundEffect(SoundType.Win);
+        _gameManager.gameStatus = GameStatus.Stop;
+        onWinEvent?.Invoke();
     }
 
     [Button]
-    public void SetTaskItemsRandom(int itemCount)
+    private void SetTaskItemsRandom()
     {
+        var itemCount = Random.Range(1, 4);
+        _totalTaskCount = 0;
         selectedTypeItems.Clear();
         InitializeTypeItems();
 
@@ -53,14 +79,24 @@ public class TaskSubjectsManager : MonoBehaviour
             _taskModels[i].taskImage.sprite = _sprites[(int)randomItem];
             SetTasksCount(i, randomItem);
         }
+
+        _currentTaskTotal = _totalTaskCount;
     }
 
     [Button]
-    public void SetTaskItems(int levelIndex)
+    public void SetTaskItems()
     {
+        var level = _gameManager.statsManager.GetStats(StatsType.Level);
+        if (level >= _levelTypeItems.Count)
+        {
+            SetTaskItemsRandom();
+            return;
+        }
+
+        _totalTaskCount = 0;
         selectedTypeItems.Clear();
 
-        var levelItems = _levelTypeItems[levelIndex].typeItems;
+        var levelItems = _levelTypeItems[level].typeItems;
 
         for (int i = 0; i < _taskModels.Length; i++)
             _taskModels[i].taskImage.gameObject.SetActive(i < levelItems.Count);
@@ -72,17 +108,14 @@ public class TaskSubjectsManager : MonoBehaviour
             _taskModels[i].taskImage.sprite = _sprites[(int)selectedTypeItems[i]];
             SetTasksCount(i, selectedTypeItems[i]);
         }
+
+        _currentTaskTotal = _totalTaskCount;
     }
 
     private void SetTasksCount(int index, TypeItem typeItem)
     {
-        _gameManager.slotsManager.slots.ForEach(x =>
-        {
-            if (x.typeItem == typeItem)
-            {
-                _taskModels[index].taskIndex++;
-            }
-        });
+        _taskModels[index].taskIndex = _gameManager.slotsManager.enableSlots.Count(x => x.typeItem == typeItem);
+        _totalTaskCount += _taskModels[index].taskIndex;
         _taskModels[index].taskText.text = $"{_taskModels[index].taskIndex}";
     }
 

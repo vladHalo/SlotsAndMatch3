@@ -35,16 +35,20 @@ namespace Core.Scripts.Views
 
         public void NextStep(int index)
         {
-            //_buttonsList[index].images[_buttonsList[index].step].sprite = _buttonsList[index].sprite;
+            if (_buttonsList[index].step >= _buttonsList[index].images.Count)
+            {
+                return;
+            }
+
+            _buttonsList[index].images[_buttonsList[index].step].sprite = _buttonsList[index].sprite;
             _buttonsList[index].step++;
             if (!string.IsNullOrEmpty(_buttonsList[index].nameSave))
                 ES3.Save(_buttonsList[index].nameSave + Suffix, _buttonsList[index].step);
-            _buttonsList[index]._textUpgrade.text = (_buttonsList[index].value * _buttonsList[index].step).ToString();
-            // if (_buttonsList[index].step >= _buttonsList[index].images.Count)
-            // {
-            //     _buttonsList[index].button.interactable = false;
-            //     _buttonsList[index].priceText.gameObject.SetActive(false);
-            // }
+            if (_buttonsList[index].step >= _buttonsList[index].images.Count)
+            {
+                _buttonsList[index].button.interactable = false;
+                _buttonsList[index].priceText.gameObject.SetActive(false);
+            }
         }
 
         public void ChangePriceText(int index, int price) => _buttonsList[index].priceText.text = $"{price}";
@@ -56,22 +60,21 @@ namespace Core.Scripts.Views
             {
                 if (string.IsNullOrEmpty(t.nameSave)) continue;
 
-                if (ES3.KeyExists(t.nameSave + Suffix))
+                if (ES3.KeyExists(t.nameSave + Suffix) && t.sprite != null)
                 {
                     index = ES3.Load<int>(t.nameSave + Suffix);
                     t.step = index;
-                    t._textUpgrade.text = (t.value * t.step).ToString();
-                    // for (int i = 0; i < index; i++)
-                    // {
-                    //     t.images[i].sprite = t.sprite;
-                    // }
+                    for (int i = 0; i < index; i++)
+                    {
+                        t.images[i].sprite = t.sprite;
+                    }
                 }
 
-                // if (index >= t.images.Count)
-                // {
-                //     t.button.interactable = false;
-                //     t.priceText.gameObject.SetActive(false);
-                // }
+                if (index >= t.images.Count)
+                {
+                    t.button.interactable = false;
+                    t.priceText.gameObject.SetActive(false);
+                }
             }
         }
     }

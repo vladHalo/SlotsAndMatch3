@@ -1,5 +1,7 @@
 using System;
-using TMPro;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Scripts.Views.Models
@@ -9,11 +11,14 @@ namespace Core.Scripts.Views.Models
     {
         public string nameSave;
         public int step;
-        public float value;
         public Button button;
-        public TextMeshProUGUI _textUpgrade;
+        public Sprite sprite;
+        [ShowIf("ButtonSpriteNotNull")] public Text priceText;
+        [ShowIf("ButtonSpriteNotNull")] public List<Image> images;
 
-        public Text priceText;
-        //public List<Image> images;
+        private bool ButtonSpriteNotNull()
+        {
+            return button != null && sprite != null;
+        }
     }
 }

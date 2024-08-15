@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _1Core.Scripts.Game;
 using Core.Scripts.Tools.Extensions;
 using Core.Scripts.Tools.Tools;
 using DG.Tweening;
@@ -11,19 +12,21 @@ using RangeInt = Core.Scripts.Tools.Tools.RangeInt;
 
 public class SlotsManager : MonoBehaviour
 {
-    [SerializeField] private float _heightLines, _paddingLinesX, _paddingLinesY;
-    [SerializeField] private float _heightMove;
+    [SerializeField] private float _scaleBox = .01f, _scaleItem = .3f;
+    [SerializeField] private float _heightMove = 4.5f;
+    [SerializeField] private float _linesX, _linesY;
+    [SerializeField] private float _paddingBoxX, _paddingBoxY;
 
-    //[SerializeField] private BlockItemFactory _blockItemFactory;
-    [SerializeField] private MapManager _mapManager;
+    [SerializeField] private BoolArrayVisualizer _boolArrayVisualizer;
     [SerializeField] private RangeInt _rangeWay;
     [SerializeField] private RangeFloat _rangeDuration;
-    [SerializeField] private LineModel[] _linesModel;
-    [SerializeField] private Sprite[] _sprites;
+    [SerializeField] private Transform[] _lines;
+    [SerializeField] private SpriteProcentModel[] _spriteProcentModels;
 
     private GameManager _gameManager;
 
-    public List<Slot> slots;
+    [SerializeField] private List<Slot> _slots;
+    public List<Slot> enableSlots;
 
     private void OnValidate()
     {
@@ -33,73 +36,95 @@ public class SlotsManager : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        slots.ForEach(x => x.spritesList.ForEach(y => y.sprite = _sprites.Random()));
+        _slots.ForEach(x =>
+            x.spritesList.ForEach(
+                y => y.sprite = _spriteProcentModels[Random.Range(0, (int)TypeItem.WoodShield)].sprite));
     }
 
     private void AlignBoxes()
     {
-        for (int i = 0; i < _linesModel.Length; i++)
-        {
-            _linesModel[i].line.position = _linesModel[i].line.position.SetY(_heightLines);
-            if (i == 4) continue;
-            _linesModel[i].line.position = _linesModel[i].line.position.SetX(_paddingLinesX * _linesModel[i].index);
-        }
+        for (int i = 0; i < _lines.Length; i++)
+            _lines[i].position = _lines[i].position.SetX(_linesX).SetY(_linesY);
 
-        int index = 0;
-        for (int i = 0; i < slots.Count; i++)
+        int indexX = 0, indexY = 0;
+        for (int i = 0; i < _slots.Count; i++)
         {
             if (i % 9 == 0)
             {
-                index = 0;
+                indexX = 0;
+                indexY++;
             }
 
-            slots[i].box.localPosition = slots[i].box.localPosition.SetY(index * _paddingLinesY);
-            index++;
+            _slots[i].box.localPosition =
+                _slots[i].box.localPosition.SetX(indexX * _paddingBoxX).SetY(indexY * _paddingBoxY);
+            _slots[i].box.localScale = new Vector3(_scaleBox, _scaleBox, 1);
+            _slots[i].spritesList[0].transform.localPosition = new Vector3(0, _heightMove, 0);
+            _slots[i].spritesList[0].transform.localScale = new Vector3(_scaleItem, _scaleItem, 1);
+            _slots[i].spritesList[1].transform.localScale = new Vector3(_scaleItem, _scaleItem, 1);
+            indexX++;
         }
     }
 
-    //[Button]
-    // private void SetSortingLayer()
-    // {
-    //     int index = 0;
-    //     for (int i = 0; i < slots.Count; i++)
-    //     {
-    //         if (i % 9 == 0)
-    //         {
-    //             index = 0;
-    //         }
-    //
-    //         slots[i].box.name = i.ToString();
-    //         //slots[i].box.AddComponent<BoxCollider2D>();
-    //         slots[i].box.GetComponent<SpriteRenderer>().sortingLayerName = "Layer" + index;
-    //         slots[i].box.GetComponent<SpriteMask>().sortingLayerName = "Layer" + index;
-    //         slots[i].spritesList[0].GetComponent<SpriteRenderer>().sortingLayerName = "Layer" + index;
-    //         slots[i].spritesList[1].GetComponent<SpriteRenderer>().sortingLayerName = "Layer" + index;
-    //         index++;
-    //     }
-    // }
-
     [Button]
-    public void EnableSlots() => _mapManager.EnableSlots(0, slots);
+    public void EnableSlots()
+    {
+        enableSlots.Clear();
+        var level = _gameManager.statsManager.GetStats(StatsType.Level);
+        bool isRandom = level >= _boolArrayVisualizer.list.Count;
+
+        bool[] activeArray = isRandom
+            ? GenerateRandomArray(_slots.Count)
+            : _boolArrayVisualizer.list[level].array;
+
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            ConfigureSlot(_slots[i], activeArray[i]);
+            if (activeArray[i]) enableSlots.Add(_slots[i]);
+        }
+    }
+
+    private bool[] GenerateRandomArray(int size)
+    {
+        bool[] randomArray = new bool[size];
+        for (int i = 0; i < size; i++)
+        {
+            randomArray[i] = Random.Range(0, 3) < 2;
+        }
+
+        return randomArray;
+    }
+
+    private void ConfigureSlot(Slot slot, bool isActive)
+    {
+        slot.box.localScale = new Vector3(_scaleBox, _scaleBox, 1);
+        slot.box.gameObject.SetActive(isActive);
+        slot.boxCollider.enabled = true;
+    }
+
 
     [Button]
     public void SetSlots()
     {
-        _linesModel.ForEach(x =>
+        int i = 0;
+        for (int j = 0; j < _lines[i].childCount; j++)
         {
-            foreach (Transform item in x.line)
+            for (; i < _lines.Length; i++)
             {
                 var slot = new Slot();
-                slot.box = item;
-                slot.line = item.GetChild(0);
+                slot.box = _lines[i].GetChild(j);
+                slot.box.name = $"{i}{j}";
+                slot.boxCollider = slot.box.GetComponent<BoxCollider2D>();
+                slot.line = slot.box.GetChild(0);
                 slot.spritesList = new List<SpriteRenderer>
                 {
                     slot.line.GetChild(0).GetComponent<SpriteRenderer>(),
                     slot.line.GetChild(1).GetComponent<SpriteRenderer>()
                 };
-                slots.Add(slot);
+                _slots.Add(slot);
             }
-        });
+
+            i = 0;
+        }
     }
 
     [Button, HideInEditorMode]
@@ -108,23 +133,16 @@ public class SlotsManager : MonoBehaviour
         _gameManager.gameStatus = GameStatus.Stop;
         int randomIndexWay = _rangeWay.RandomInRange();
         float duration = randomIndexWay / _rangeDuration.RandomInRange();
-
-        slots.ForEach(x => x.Move(randomIndexWay, duration, _heightMove, _sprites));
-        Observable.Timer(TimeSpan.FromSeconds(duration)).Subscribe(_ =>
+        AudioManager.instance.PlaySoundEffect(SoundType.Slot);
+        
+        enableSlots.ForEach(x => x.Move(_scaleItem, randomIndexWay, duration, _heightMove, _spriteProcentModels));
+        Observable.Timer(TimeSpan.FromSeconds(duration+.1f)).Subscribe(_ =>
         {
-            _gameManager.taskSubjectsManager.SetTaskItemsRandom(2);
+            _gameManager.taskSubjectsManager.SetTaskItems();
             _gameManager.blockManager.SetTasksCount(_gameManager.taskSubjectsManager.selectedTypeItems);
-            _gameManager.timerGame.StartTimer(0);
+            _gameManager.timerGame.StartTimer();
             _gameManager.gameStatus = GameStatus.Play;
         });
-    }
-
-    private void EnableChildren(Transform parent, bool enable)
-    {
-        foreach (Transform i in parent)
-        {
-            i.gameObject.SetActive(enable);
-        }
     }
 }
 
@@ -132,12 +150,15 @@ public class SlotsManager : MonoBehaviour
 public class Slot
 {
     public Transform box;
+
+    public BoxCollider2D boxCollider;
     public Transform line;
     [HideInInspector] public int indexWay;
     public List<SpriteRenderer> spritesList;
     public TypeItem typeItem;
 
-    public void Move(int randomIndexWay, float duration, float heightMove, Sprite[] sprites)
+    public void Move(float scale, int randomIndexWay, float duration, float heightMove,
+        SpriteProcentModel[] spriteModels)
     {
         AlignSlots(heightMove);
         indexWay = 0;
@@ -147,23 +168,30 @@ public class Slot
             if (line.localPosition.y + indexWay * heightMove < .01f)
             {
                 if (indexWay != randomIndexWay)
-                    ChangePositionSlots(heightMove, sprites);
+                    ChangePositionSlots(scale, heightMove, spriteModels);
                 indexWay++;
             }
         });
     }
 
-    private void ChangePositionSlots(float heightMove, Sprite[] sprites)
+    private void ChangePositionSlots(float scale, float heightMove, SpriteProcentModel[] spriteModels)
     {
-        int rand = Random.Range(0, sprites.Length);
-        typeItem = (TypeItem)rand;
-        ChangePositionSlotsDefault(sprites[rand], heightMove);
+        float rand = Random.Range(0f, 100f);
+        for (int i = 0; i < spriteModels.Length; i++)
+        {
+            if (rand > spriteModels[i].range.Min && rand <= spriteModels[i].range.Max)
+            {
+                typeItem = (TypeItem)i;
+                ChangePositionSlotsDefault(scale, spriteModels[i].sprite, heightMove);
+                break;
+            }
+        }
     }
 
-    private void ChangePositionSlotsDefault(Sprite sprite, float heightMove)
+    private void ChangePositionSlotsDefault(float scale, Sprite sprite, float heightMove)
     {
         var last = spritesList[^1];
-        last.transform.localScale = new Vector3(.1f, .1f, .1f);
+        last.transform.localScale = new Vector3(scale, scale, 1);
         last.transform.localPosition =
             last.transform.localPosition.SetY(spritesList[0].transform.localPosition.y + heightMove);
         spritesList.RemoveAt(spritesList.Count - 1);
@@ -180,10 +208,10 @@ public class Slot
 }
 
 [Serializable]
-public class LineModel
+public class SpriteProcentModel
 {
-    public int index;
-    public Transform line;
+    public Sprite sprite;
+    public RangeFloat range;
 }
 
 public enum TypeItem
@@ -195,5 +223,11 @@ public enum TypeItem
     Poison,
     Rube,
     Shield,
-    WoodShield
+    WoodShield,
+
+    //
+    Heart,
+    Coin,
+    Star,
+    Time
 }
