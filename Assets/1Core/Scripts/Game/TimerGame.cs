@@ -7,7 +7,6 @@ using UnityEngine.Events;
 
 public class TimerGame : MonoBehaviour
 {
-    [SerializeField] private RangeFloat _rangeTime;
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private float[] _timeLevel;
 
@@ -55,7 +54,7 @@ public class TimerGame : MonoBehaviour
         }
         else
         {
-            _time = _rangeTime.RandomInRange();
+            _time = _gameManager.taskSubjectsManager.itemCount * 10 + 10;
         }
 
         SetTextTimer();

@@ -13,6 +13,7 @@ using Random = UnityEngine.Random;
 
 public class TaskSubjectsManager : MonoBehaviour
 {
+    public int itemCount;
     [SerializeField] private LoadBar _loadBar;
     [SerializeField] private TaskModel[] _taskModels;
     [SerializeField] private Sprite[] _sprites;
@@ -62,7 +63,7 @@ public class TaskSubjectsManager : MonoBehaviour
     [Button]
     private void SetTaskItemsRandom()
     {
-        var itemCount = Random.Range(1, 4);
+        itemCount = Random.Range(1, 4);
         _totalTaskCount = 0;
         selectedTypeItems.Clear();
         InitializeTypeItems();

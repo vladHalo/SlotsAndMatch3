@@ -96,4 +96,12 @@ public class HeartTimer : MonoBehaviour
             ES3.Save(Str.HeartTime, timeHeart);
         }
     }
+
+    public void Reset()
+    {
+        StopAllCoroutines();
+        _textTime.text = "";
+        _currentCoroutine = null;
+        timeHeart = 0;
+    }
 }

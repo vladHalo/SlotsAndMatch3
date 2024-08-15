@@ -23,9 +23,9 @@ public class BlockManager : MonoBehaviour
     public void SetDesign(int index)
     {
         _crashSprite.Clear();
-        _crashSprite = _spriteBlockModels[index].sprites;
+        _crashSprite = new List<Sprite>(_spriteBlockModels[index].sprites);
     }
-    
+
     private void Add(SpriteRenderer spriteRenderer, Slot slot)
     {
         var block = new BlockModel

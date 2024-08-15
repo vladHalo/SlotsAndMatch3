@@ -38,12 +38,14 @@ namespace _1Core.Scripts.Game
             if (!ES3.KeyExists(_type + _suffix)) return;
             currentIndex = ES3.Load<int>(_type + _suffix);
             if (_textStat != null) _textStat.text = currentIndex.ToString();
+            if (_type == StatsType.Level) _textStat.text = "LEVEL: " + (currentIndex + 1);
         }
 
         public void Reset()
         {
             currentIndex = _startIndex;
             if (_textStat != null) _textStat.text = currentIndex.ToString();
+            if (_type == StatsType.Level) _textStat.text = "LEVEL: " + (currentIndex + 1);
         }
 
         public void Add(int value)
@@ -51,6 +53,7 @@ namespace _1Core.Scripts.Game
             currentIndex += value;
             if (_isMaxIndex && currentIndex > _maxIndex) currentIndex = _maxIndex;
             if (_textStat != null) _textStat.text = currentIndex.ToString();
+            if (_type == StatsType.Level) _textStat.text = "LEVEL: " + (currentIndex + 1);
             ES3.Save(_type + _suffix, currentIndex);
         }
 

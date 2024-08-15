@@ -36,6 +36,11 @@ public class SlotsManager : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
+        RandomSlot();
+    }
+
+    public void RandomSlot()
+    {
         _slots.ForEach(x =>
             x.spritesList.ForEach(
                 y => y.sprite = _spriteProcentModels[Random.Range(0, (int)TypeItem.WoodShield)].sprite));
@@ -134,9 +139,9 @@ public class SlotsManager : MonoBehaviour
         int randomIndexWay = _rangeWay.RandomInRange();
         float duration = randomIndexWay / _rangeDuration.RandomInRange();
         AudioManager.instance.PlaySoundEffect(SoundType.Slot);
-        
+
         enableSlots.ForEach(x => x.Move(_scaleItem, randomIndexWay, duration, _heightMove, _spriteProcentModels));
-        Observable.Timer(TimeSpan.FromSeconds(duration+.1f)).Subscribe(_ =>
+        Observable.Timer(TimeSpan.FromSeconds(duration + .1f)).Subscribe(_ =>
         {
             _gameManager.taskSubjectsManager.SetTaskItems();
             _gameManager.blockManager.SetTasksCount(_gameManager.taskSubjectsManager.selectedTypeItems);

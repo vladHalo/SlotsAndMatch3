@@ -47,6 +47,13 @@ namespace _1Core.Scripts
             // }
         }
 
+        public void SetMoney(float value)
+        {
+            money = value;
+            money = (float)Math.Round(money, 2);
+            _moneyTexts.ForEach(x => x.text = money.ToIdleFormat(2, 0));
+        }
+
         public void AddMoney(float value)
         {
             money += value;
