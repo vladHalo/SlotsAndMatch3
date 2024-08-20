@@ -52,6 +52,8 @@ public class HeartTimer : MonoBehaviour
         {
             StartHeartTimerIfNeeded();
         }
+
+        GameManager.instance.EnableBtnStart();
     }
 
     [Button]
@@ -82,6 +84,8 @@ public class HeartTimer : MonoBehaviour
         }
 
         _statsManager.AddStats(StatsType.Hearts, 1);
+        var gameManager = GameManager.instance;
+        if (!gameManager.startGame) gameManager.EnableBtnStart();
         _textTime.text = "";
 
         _currentCoroutine = null;

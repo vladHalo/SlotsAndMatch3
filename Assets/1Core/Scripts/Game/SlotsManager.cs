@@ -43,7 +43,7 @@ public class SlotsManager : MonoBehaviour
     {
         _slots.ForEach(x =>
             x.spritesList.ForEach(
-                y => y.sprite = _spriteProcentModels[Random.Range(0, (int)TypeItem.WoodShield)].sprite));
+                y => y.sprite = _spriteProcentModels[Random.Range(0, (int)TypeItem.Shield)].sprite));
     }
 
     private void AlignBoxes()
@@ -170,7 +170,7 @@ public class Slot
 
         line.DOLocalMoveY(-(randomIndexWay * heightMove), duration).OnUpdate(() =>
         {
-            if (line.localPosition.y + indexWay * heightMove < .01f)
+            if (line.localPosition.y + indexWay * heightMove < .001f)
             {
                 if (indexWay != randomIndexWay)
                     ChangePositionSlots(scale, heightMove, spriteModels);
@@ -228,7 +228,7 @@ public enum TypeItem
     Poison,
     Rube,
     Shield,
-    WoodShield,
+    //WoodShield,
 
     //
     Heart,

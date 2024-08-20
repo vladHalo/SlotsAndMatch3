@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject btnStart;
+    public bool startGame;
+    public Button btnStart;
     public Button btnShop;
 
     public Leadboard leadboard;
@@ -40,8 +41,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartGame(bool enable) => startGame = enable;
+
     public void EnableBtnStart() =>
-        btnStart.gameObject.SetActive(statsManager.GetStats(StatsType.Hearts) > 0);
+        btnStart.interactable = statsManager.GetStats(StatsType.Hearts) > 0;
 
     [Button]
     public void AddLevel() => statsManager.AddStats(StatsType.Level, 1);
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
         timerGame.StopTimer();
         timerGame.ResetTimer();
         loadBar.SetProgress(0);
-        btnStart.gameObject.SetActive(true);
+        btnStart.interactable = true;
         btnShop.interactable = true;
         taskSubjectsManager.OffTaskImage();
         slotsManager.RandomSlot();
