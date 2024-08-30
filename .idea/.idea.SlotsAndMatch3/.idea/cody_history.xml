@@ -14,6 +14,12 @@
                     <model value="anthropic/claude-3-sonnet-20240229" />
                     <provider value="Anthropic" />
                     <title value="Claude 3 Sonnet" />
+                    <usage>
+                      <list>
+                        <option value="chat" />
+                        <option value="edit" />
+                      </list>
+                    </usage>
                   </llm>
                 </llm>
               </chat>
@@ -24,11 +30,29 @@
                     <model value="anthropic/claude-3-sonnet-20240229" />
                     <provider value="Anthropic" />
                     <title value="Claude 3 Sonnet" />
+                    <usage>
+                      <list>
+                        <option value="chat" />
+                        <option value="edit" />
+                      </list>
+                    </usage>
                   </llm>
                 </llm>
               </chat>
               <chat>
                 <internalId value="09e409a5-01fd-4452-b320-d69b37c3eb6e" />
+              </chat>
+              <chat>
+                <internalId value="c45fc235-bbc3-427a-8124-0c3ae71fe0b3" />
+              </chat>
+              <chat>
+                <internalId value="c42c1c67-5e96-404b-bfcb-1b9f173ab9de" />
+              </chat>
+              <chat>
+                <internalId value="5a2ce917-87c9-4d31-89dd-1595566664f7" />
+              </chat>
+              <chat>
+                <internalId value="14c6e45a-5289-4614-a1cf-b4f72ae1bf6f" />
               </chat>
             </list>
           </chats>

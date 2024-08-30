@@ -14,7 +14,7 @@ public class Leadboard : MonoBehaviour
             KTGameCenter.SharedCenter().Authenticate();
         }
         
-        KTGameCenter.SharedCenter().ShowLeaderboard("com.best.scores.leaderboard");
+        KTGameCenter.SharedCenter().ShowLeaderboard("com.vv.highscores.board");
     }
 
     public void SubmitScore(int score)
@@ -24,6 +24,6 @@ public class Leadboard : MonoBehaviour
             KTGameCenter.SharedCenter().Authenticate();
         }
         
-        KTGameCenter.SharedCenter().SubmitScore(score, "com.best.scores.leaderboard");
+        KTGameCenter.SharedCenter().SubmitScore(score, "com.vv.highscores.board");
     }
 }

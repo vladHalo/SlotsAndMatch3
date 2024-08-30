@@ -17,7 +17,7 @@ namespace Core.Scripts.Views
         {
             _dialogModels.ForEach((item, index) =>
             {
-                item.dialogContent.SetActive(false);
+                item.dialogContent.SetActive(item.isOpen);
                 if (item.buttonOpen != null)
                     item.buttonOpen.onClick.AddListener(() => ShowHideDialog(index));
                 if (item.buttonOpen != item.buttonClose)
