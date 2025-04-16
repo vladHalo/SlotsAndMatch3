@@ -36,6 +36,8 @@ MonoBehaviour:
     - CW.Common
     - LeanCommon
     - LeanPool
+    - Sirenix.OdinInspector.Modules.Unity.Addressables
+    - Sirenix.OdinInspector.Modules.UnityLocalization
     - StompyRobot.SRDebugger
     - StompyRobot.SRF
     - UniRx

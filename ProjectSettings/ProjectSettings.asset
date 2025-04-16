@@ -141,7 +141,8 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: d82b72f3e36d41b41b5bd098d0430a2a, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -163,7 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.DefaultCompany.ReelMasterSpinTapAdventure
+    Android: com.vvd.shark.match
     iPhone: com.DefaultCompany.ReelMasterSpinTapAdventure
   buildNumber:
     Bratwurst: 0
@@ -171,7 +172,7 @@ PlayerSettings:
     VisionOS: 0
     iPhone: 0
     tvOS: 0
-  overrideDefaultApplicationIdentifier: 0
+  overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 34
@@ -266,7 +267,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 2
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: Desktop/slotAndMatchThree.keystore'
+  AndroidKeystoreName: C:/Users/VladH/Desktop/Keys/slotAndMatchThree.keystore
   AndroidKeyaliasName: slotsandmatchthree
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 6fff794dd979d944e80c2508f243d33d
+  m_SerializeEntries:
+  - m_GUID: 5d9ee527d18a9e84a8d41dd993177999
+    m_Address: Assets/1Core/Materials/AppName Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74cf3325f829d7f439a4898b392ca1aa
+    m_Address: Assets/1Core/Materials/IconApp Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7747dadb4a6782041a2d3bb9d55e04d6
+    m_Address: logo 2
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-kk-KZ
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa37318f67bd24e41bdde7afcc74d7bc
+    m_Address: logo1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-pl
+    - Locale-pl-PL
+    - Locale-ro
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: b2811255aa393ca418a6c7d50cdcdc01, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c1c4289b1cf8b47479806e7801a896c5, type: 2}
+    - {fileID: 11400000, guid: 1aac12aa70a84ea4e85ee37d50ba7e7c, type: 2}

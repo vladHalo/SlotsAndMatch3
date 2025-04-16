@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db626ad063b13545924a9839ac5fa83, type: 3}
+  m_Name: IconApp
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 74cf3325f829d7f439a4898b392ca1aa, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 1115f3f0e44e2344784afa24d01a4ca4, type: 2}
+  - {fileID: 11400000, guid: 52c3a46c5b47a174690fa17af7da1072, type: 2}
+  - {fileID: 11400000, guid: 9350c2c04f9485444a9f2e37bc0acd96, type: 2}
+  - {fileID: 11400000, guid: c1f349bc69c636743b14d034a1bd57b7, type: 2}
+  - {fileID: 11400000, guid: 7c174f2e24b507344878deb8379b0a8c, type: 2}
+  - {fileID: 11400000, guid: 1376a0d767ac7864aadd1119a37aff42, type: 2}
+  m_Extensions: []
+  m_Group: Asset Table
+  references:
+    version: 2
+    RefIds: []

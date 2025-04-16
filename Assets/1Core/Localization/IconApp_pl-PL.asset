@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: IconApp_pl-PL
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pl-PL
+  m_SharedData: {fileID: 11400000, guid: 74cf3325f829d7f439a4898b392ca1aa, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 35231399936
+    m_Localized: aa37318f67bd24e41bdde7afcc74d7bc
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
